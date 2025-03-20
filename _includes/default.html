@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li><a href="{{ '/mind-maps/' | relative_url }}">Mind & Maps</a></li>
+                <li><a href="{{ '/musings-memoirs/' | relative_url }}">Musings & Memoirs</a></li>
+                <li><a href="{{ '/bridging-thoughts/' | relative_url }}">Bridging Thoughts</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {{ content }}
+    </main>
+
+    <footer>
+        <p>&copy; {{ site.time | date: "%Y" }} Perpetual Liminality</p>
+    </footer>
+</body>
+</html>
