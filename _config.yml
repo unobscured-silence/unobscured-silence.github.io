@@ -1,8 +1,0 @@
-theme: minima
-title: Placeholderplaceholder
-description: Placeholderplaceholder
-
-collections:
-  pages:
-    output: true
-    permalink: /:path/
