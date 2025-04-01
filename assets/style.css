@@ -325,3 +325,80 @@ blockquote {
     margin: 0 auto;
   }
 }
+
+/* Additional Mobile Responsiveness */
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .top-nav a {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .post {
+    padding: 80px 15px;
+    height: auto;
+  }
+
+  .post h2 {
+    font-size: 1.5rem;
+  }
+
+  .post p {
+    font-size: 0.9rem;
+  }
+
+  .blog-container,
+  .blog-post-container {
+    padding: 10px;
+  }
+
+  .blog-post h2 {
+    font-size: 1.5rem;
+  }
+
+  .post-title {
+    font-size: 2rem;
+  }
+
+  .post-meta {
+    font-size: 0.8rem;
+  }
+
+  .post-content {
+    font-size: 1rem;
+    padding: 0 5px;
+  }
+
+  blockquote {
+    font-size: 0.95rem;
+    padding-left: 10px;
+  }
+
+  .back-link {
+    font-size: 0.95rem;
+  }
+}
+
+html {
+  font-size: 100%;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 90%;
+  }
+}
