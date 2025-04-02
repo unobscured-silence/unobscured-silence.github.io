@@ -37,7 +37,7 @@
 
         <p>Increasingly, it seems evident that the most critical factor for flourishing within our communities is not genuine competence or merit, but rather the connections we hold. Vast swaths of unqualified individuals occupy positions at society's highest levels not due to legitimate skill or expertise, but through their proficiency at playing the social game. The pursuit and achievement of status drive many human behaviors—status encompassing likability, acceptance, and social safety.</p>
 
-        <blockquote>“The urge for rank is ineradicable. It's the secret goal of our lives, to win status for ourselves and our game - and gain as much of it over you and you and you as we can. It's how we make meaning. It's how we make identity.” — Will Storr, *The Status Game*</blockquote>
+        <blockquote>“The urge for rank is ineradicable. It's the secret goal of our lives, to win status for ourselves and our game - and gain as much of it over you and you and you as we can. It's how we make meaning. It's how we make identity.” — Will Storr, <em>The Status Game</em></blockquote>
 
         <h2>People-Pleasing & Deception</h2>
         <p>Is it true, then, that our inherent nature is fundamentally driven by a desire to be viewed favorably, even superiorly, compared to others? I once held the perhaps naïve belief that goodness formed the foundation for many people's actions. My last remaining piece of innocence was my deluded conviction that individuals operate predominantly on ethics of honesty, transparency, and kindness—not universally, but at least in earnest reciprocity.</p>
@@ -57,14 +57,14 @@
         <p>Thus, the question I'm continually left pondering—as evidenced by my persistent thought patterns—is how are these behaviors influenced by our brain's internal mechanisms?</p>
       </div>
 
-      <a class="back-link" href="../musings-memoirs.html">← Back to Musings & Memoirs</a>
+      <a class="back-link" href="../musings-memoirs.html">&larr; Back to Musings & Memoirs</a>
     </article>
 
     <!-- Like & Comment Section -->
     <section class="interaction-section">
       <!-- Like -->
       <div class="like-section">
-        <button id="like-button">❤️</button>
+        <button id="like-button">&#10084;</button>
         <span id="like-text"><span id="like-count">0</span> Likes</span>
       </div>
 
@@ -79,6 +79,7 @@
         </div>
 
         <div class="comment-input">
+          <input id="comment-username" type="text" placeholder="Your name..." />
           <textarea id="comment-text" placeholder="Write a comment..."></textarea>
           <button id="post-comment">Post Comment</button>
         </div>
@@ -88,52 +89,101 @@
     </section>
   </main>
 
-  <!-- Script -->
   <script>
-    // 💖 Like Button Logic
-    let likeCount = 0;
+    const postId = window.location.pathname;
+    let likeCount = Number(localStorage.getItem(`${postId}-likes`)) || 0;
+    let liked = localStorage.getItem(`${postId}-liked`) === "true";
+
     const likeBtn = document.getElementById("like-button");
     const likeCountSpan = document.getElementById("like-count");
+    likeCountSpan.textContent = likeCount;
+
+    if (liked) {
+      likeBtn.classList.add("liked");
+      likeBtn.disabled = true;
+    }
 
     likeBtn.addEventListener("click", () => {
-      likeCount++;
-      likeCountSpan.textContent = likeCount;
+      if (!liked) {
+        likeCount++;
+        localStorage.setItem(`${postId}-likes`, likeCount);
+        localStorage.setItem(`${postId}-liked`, "true");
+        likeCountSpan.textContent = likeCount;
+        likeBtn.disabled = true;
+        likeBtn.style.opacity = 0.6;
+      }
     });
 
-    // 💬 Comments Logic
-    let comments = [];
+    let comments = JSON.parse(localStorage.getItem(`${postId}-comments`)) || [];
+
+    const usernameInput = document.getElementById("comment-username");
     const commentInput = document.getElementById("comment-text");
     const commentList = document.getElementById("comments-list");
     const commentCount = document.getElementById("comment-count");
     const sortOrder = document.getElementById("sort-order");
 
     document.getElementById("post-comment").addEventListener("click", () => {
+      const username = usernameInput.value.trim();
       const text = commentInput.value.trim();
-      if (text) {
-        comments.push({ text, timestamp: new Date() });
+      if (username && text) {
+        const newComment = {
+          username,
+          text,
+          timestamp: new Date().toISOString()
+        };
+        comments.push(newComment);
+        localStorage.setItem(`${postId}-comments`, JSON.stringify(comments));
+        usernameInput.value = "";
         commentInput.value = "";
         renderComments();
+      } else {
+        alert("Please enter both a name and a comment.");
       }
     });
 
     sortOrder.addEventListener("change", renderComments);
 
+    function formatTimeAgo(dateStr) {
+      const now = new Date();
+      const date = new Date(dateStr);
+      const seconds = Math.floor((now - date) / 1000);
+      if (seconds < 60) return `just now`;
+      const minutes = Math.floor(seconds / 60);
+      if (minutes < 60) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+      const days = Math.floor(hours / 24);
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    }
+
     function renderComments() {
       commentList.innerHTML = "";
       let sorted = [...comments];
-      if (sortOrder.value === "newest") {
-        sorted.reverse();
-      }
+      if (sortOrder.value === "newest") sorted.reverse();
 
       sorted.forEach(c => {
+        const initial = c.username.charAt(0).toUpperCase();
+        const timeAgo = formatTimeAgo(c.timestamp);
+
         const li = document.createElement("li");
-        li.textContent = c.text;
+        li.classList.add("comment-item");
+        li.innerHTML = `
+          <div class="comment-header">
+            <div class="avatar">${initial}</div>
+            <div class="meta">
+              <span class="username">${c.username}</span>
+              <span class="timestamp"> · ${timeAgo}</span>
+            </div>
+          </div>
+          <div class="comment-text">${c.text}</div>
+        `;
         commentList.appendChild(li);
       });
 
       commentCount.textContent = comments.length;
     }
-  </script>
 
+    renderComments();
+  </script>
 </body>
 </html>

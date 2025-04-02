@@ -47,10 +47,9 @@
         <p>In the end, all jealousy and judgment does is inhibit us. They prevent us from seeing another person’s point of view, and keeps us stuck, experiencing the world through a self centered perspective. The worst part of this is that it obstructs us from our shared goal of mutual understanding and human connection, which is what most of humanity truly aches for internally. Adopting an envious lens causes our focus to narrow. We miss out on the nuance in the periphery, what lies beyond our immediate gaze. The person we didn’t speak to, the individual we shot a glare at, the human we avoided interacting with could very well have changed our life. They could have been a potential friend, teacher, or lover. They could have offered a perspective or shared an experience that inspired us to change our own. They could have taught us something new, or on the most basic intrinsic level, we would have engaged in a genuine human exchange. And the thing that could have altered our course into that direction? A simple hello, a radiant friendly smile, or even, dare I say, a compliment.</p>
       </div>
 
-      <a class="back-link" href="../musings-memoirs.html">← Back to Musings & Memoirs</a>
+      <a class="back-link" href="../musings-memoirs.html">&larr; Back to Musings & Memoirs</a>
     </article>
 
-    <!-- Like & Comment Section -->
     <section class="interaction-section">
       <div class="like-section">
         <button id="like-button">❤️</button>
@@ -67,6 +66,7 @@
         </div>
 
         <div class="comment-input">
+          <input id="comment-username" type="text" placeholder="Your name..." />
           <textarea id="comment-text" placeholder="Write a comment..."></textarea>
           <button id="post-comment">Post Comment</button>
         </div>
@@ -77,48 +77,98 @@
   </main>
 
   <script>
-    let likeCount = 0;
+    const postId = window.location.pathname;
+    let likeCount = Number(localStorage.getItem(`${postId}-likes`)) || 0;
+    let liked = localStorage.getItem(`${postId}-liked`) === "true";
+
     const likeBtn = document.getElementById("like-button");
     const likeCountSpan = document.getElementById("like-count");
+    likeCountSpan.textContent = likeCount;
+
+    if (liked) {
+      likeBtn.disabled = true;
+      likeBtn.classList.add("liked");
+      likeBtn.title = "You already liked this post";
+    }
 
     likeBtn.addEventListener("click", () => {
-      likeCount++;
-      likeCountSpan.textContent = likeCount;
+      if (!liked) {
+        likeCount++;
+        localStorage.setItem(`${postId}-likes`, likeCount);
+        localStorage.setItem(`${postId}-liked`, "true");
+        likeCountSpan.textContent = likeCount;
+        likeBtn.disabled = true;
+        likeBtn.classList.add("liked");
+      }
     });
 
-    let comments = [];
+    let comments = JSON.parse(localStorage.getItem(`${postId}-comments`)) || [];
+
+    const usernameInput = document.getElementById("comment-username");
     const commentInput = document.getElementById("comment-text");
     const commentList = document.getElementById("comments-list");
     const commentCount = document.getElementById("comment-count");
     const sortOrder = document.getElementById("sort-order");
 
     document.getElementById("post-comment").addEventListener("click", () => {
+      const username = usernameInput.value.trim();
       const text = commentInput.value.trim();
-      if (text) {
-        comments.push({ text, timestamp: new Date() });
+      if (username && text) {
+        const newComment = {
+          username,
+          text,
+          timestamp: new Date().toISOString()
+        };
+        comments.push(newComment);
+        localStorage.setItem(`${postId}-comments`, JSON.stringify(comments));
+        usernameInput.value = "";
         commentInput.value = "";
         renderComments();
+      } else {
+        alert("Please enter both a name and a comment.");
       }
     });
 
     sortOrder.addEventListener("change", renderComments);
 
+    function formatTimeAgo(dateStr) {
+      const now = new Date();
+      const date = new Date(dateStr);
+      const seconds = Math.floor((now - date) / 1000);
+      if (seconds < 60) return `just now`;
+      const minutes = Math.floor(seconds / 60);
+      if (minutes < 60) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+      const days = Math.floor(hours / 24);
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    }
+
     function renderComments() {
       commentList.innerHTML = "";
       let sorted = [...comments];
-      if (sortOrder.value === "newest") {
-        sorted.reverse();
-      }
+      if (sortOrder.value === "newest") sorted.reverse();
 
       sorted.forEach(c => {
         const li = document.createElement("li");
-        li.textContent = c.text;
+        li.classList.add("comment-item");
+        li.innerHTML = `
+          <div class="comment-header">
+            <div class="avatar">${c.username.charAt(0).toUpperCase()}</div>
+            <div class="meta">
+              <span class="username">${c.username}</span>
+              <span class="timestamp"> · ${formatTimeAgo(c.timestamp)}</span>
+            </div>
+          </div>
+          <div class="comment-text">${c.text}</div>
+        `;
         commentList.appendChild(li);
       });
 
       commentCount.textContent = comments.length;
     }
-  </script>
 
+    renderComments();
+  </script>
 </body>
 </html>
