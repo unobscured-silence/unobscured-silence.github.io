@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Neurobiology of Severed Relationships | Perpetual Liminality</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div class="header-container">
+    <div class="title-group">
+      <h1 class="site-title">
+        <a href="/index.html">Perpetual Liminality</a>
+      </h1>
+      <h2 class="subtitle">attempts at maintaining my sanity</h2>
+    </div>
+    <nav class="top-nav">
+      <a href="/index.html">Home</a>
+      <a href="/pages/about.html">About</a>
+      <a href="/pages/mind-maps.html">Minds & Maps</a>
+      <a href="/pages/musings-memoirs.html">Musings & Memoirs</a>
+    </nav>
+  </div>
+</header>
+
+<main class="blog-post-container">
+  <article class="blog-post-full">
+    <h1 class="post-title">The Neurobiology of Severed Relationships</h1>
+    <p class="post-meta">Published on April 9, 2025</p>
+
+    <div class="post-content">
+      <p>Anyone who has experienced a breakup, the death of a loved one, or the ending of a deeply involved friendship is familiar with the psychological and emotional torment that follows. In each of these scenarios, one confronts heartbreak — and the remnants of it trail behind us, rarely following a straight path.</p>
+
+      <p>Heartbreak manifests in countless ways. It could be nights spent alone, struggling under the weight of a loneliness so sharp it almost feels physical. It could be a quiet Saturday afternoon when your gaze catches on a piece of memorabilia, a relic of a life once intertwined with someone else’s. It could be an intrusive memory ambushing you in the middle of laughter with friends. Or an unexpected outburst of tears that makes no sense — because just moments ago, you felt completely fine. Sometimes, it looks like writing late-night journal entries in a desperate attempt to make sense of the ache.</p>
+
+      <p>But for some of us — palms outstretched, reaching into the arms of science — we seek solace not just in expression, but in understanding. Don’t get me wrong: I believe deeply in feeling my feelings. But I also like to take it a step further. Because I am, obviously (she says, jestering vaguely to this blog), fascinated by the neurological and psychological machinery behind our experiences — especially those that fracture and reshape us.</p>
+
+      <p>So what, exactly, is going on inside us when one of these bonds is broken? Whether they’re severed in an instant or worn away slowly over time?</p>
+
+      <p>Well, our brains process relational loss in ways that mirror physical pain and addiction withdrawal. The neural circuits that once lit up with connection, comfort, and reward don’t simply turn off when someone leaves — they react, they protest, and they grieve. From the reward pathways that drive longing and craving, to the stress circuits that flood the body with cortisol, the experience of losing a significant relationship is wired into our biology.</p>
+
+      <p>Let’s begin where the pain is first registered: the brain itself.</p>
+
+      <p>When we lose someone significant—whether to death, distance, or dissolution—our brains don’t treat it lightly. In fact, neuroimaging studies have shown that the anterior cingulate cortex and insula, regions activated during physical pain, are also lit up during experiences of social rejection or loss. In other words, heartbreak literally hurts. It’s not just poetic metaphor—it’s sensory and visceral.</p>
+
+      <p>But that’s only the beginning.</p>
+
+      <p>Our attachments are maintained by neurochemical bonding agents like oxytocin, dopamine, and vasopressin—compounds that regulate everything from trust and closeness to reward and pleasure. When a bond is severed, that entire reward system destabilizes. Dopamine pathways, specifically in the ventral tegmental area (VTA) and nucleus accumbens, which once associated the person with joy, comfort, and meaning, begin to fire in the absence of that stimulus. This drives that addictive-feeling craving, the longing to reach out, the repeated mental replays, the aching hope that it might still be reversible.</p>
+
+      <p>It’s not unlike withdrawal from drugs. In fact, researchers have found that romantic rejection activates the same brain areas as cocaine withdrawal.</p>
+
+      <p>And then there’s the hypothalamic-pituitary-adrenal (HPA) axis—our stress response system. When we lose someone important, the HPA axis revs up, pumping out cortisol, the primary stress hormone. Over time, chronic exposure to elevated cortisol can dysregulate sleep, appetite, focus, immune function, and even memory—creating that familiar post-loss fog, fatigue, or emotional volatility.</p>
+
+      <p>Even default mode network (DMN) activity shifts. This network, associated with self-referential thought and introspection, becomes hyperactive during grief. You know those spirals of “What could I have done differently?” or “Why did it end like that?” That’s your DMN, looping through the loss in an effort to make meaning—or find closure.</p>
+
+      <p>But perhaps most haunting is this: the brain doesn’t immediately recognize the finality of absence. Parts of it—especially those linked to attachment—continue to operate as though the person might return. This neurological dissonance can persist long after we consciously know they’re gone. It’s why you might still turn to text them something funny, or feel a jolt of recognition at a stranger in a crowd. The mind, despite its genius, is slow to update the emotional map.</p>
+
+      <p>We grieve not only with our hearts but with our bodies: our synapses, glands, and circuits. And while understanding the neurobiology won’t erase the pain, it can offer something grief often steals from us: a sense of grounding. A way to say, this is what’s happening, and it makes sense.</p>
+
+      <p><strong>You are not broken. You are adapting.</strong></p>
+    </div>
+
+    <a class="back-link" href="../mind-maps.html">&larr; Back to Minds & Maps</a>
+  </article>
+
+  <section class="interaction-section">
+    <div class="like-section">
+      <button id="like-button">❤️</button>
+      <span id="like-text"><span id="like-count">0</span> Likes</span>
+    </div>
+
+    <div class="comments-container">
+      <div class="comments-header">
+        <h3>Comments (<span id="comment-count">0</span>)</h3>
+        <select id="sort-order">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+
+      <div class="comment-input">
+        <input id="comment-username" type="text" placeholder="Your name..." />
+        <textarea id="comment-text" placeholder="Write a comment..."></textarea>
+        <button id="post-comment">Post Comment</button>
+      </div>
+
+      <ul id="comments-list"></ul>
+    </div>
+  </section>
+
+  <script>
+    const postId = window.location.pathname;
+    let likeCount = Number(localStorage.getItem(`${postId}-likes`)) || 0;
+    let liked = localStorage.getItem(`${postId}-liked`) === "true";
+
+    const likeBtn = document.getElementById("like-button");
+    const likeCountSpan = document.getElementById("like-count");
+    likeCountSpan.textContent = likeCount;
+
+    if (liked) {
+      likeBtn.disabled = true;
+      likeBtn.classList.add("liked");
+      likeBtn.title = "You already liked this post";
+    }
+
+    likeBtn.addEventListener("click", () => {
+      if (!liked) {
+        likeCount++;
+        localStorage.setItem(`${postId}-likes`, likeCount);
+        localStorage.setItem(`${postId}-liked`, "true");
+        likeCountSpan.textContent = likeCount;
+        likeBtn.disabled = true;
+        likeBtn.classList.add("liked");
+      }
+    });
+
+    let comments = JSON.parse(localStorage.getItem(`${postId}-comments`)) || [];
+
+    const usernameInput = document.getElementById("comment-username");
+    const commentInput = document.getElementById("comment-text");
+    const commentList = document.getElementById("comments-list");
+    const commentCount = document.getElementById("comment-count");
+    const sortOrder = document.getElementById("sort-order");
+
+    document.getElementById("post-comment").addEventListener("click", () => {
+      const username = usernameInput.value.trim();
+      const text = commentInput.value.trim();
+      if (username && text) {
+        const newComment = {
+          username,
+          text,
+          timestamp: new Date().toISOString()
+        };
+        comments.push(newComment);
+        localStorage.setItem(`${postId}-comments`, JSON.stringify(comments));
+        usernameInput.value = "";
+        commentInput.value = "";
+        renderComments();
+      } else {
+        alert("Please enter both a name and a comment.");
+      }
+    });
+
+    sortOrder.addEventListener("change", renderComments);
+
+    function formatTimeAgo(dateStr) {
+      const now = new Date();
+      const date = new Date(dateStr);
+      const seconds = Math.floor((now - date) / 1000);
+      if (seconds < 60) return `just now`;
+      const minutes = Math.floor(seconds / 60);
+      if (minutes < 60) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+      const days = Math.floor(hours / 24);
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    }
+
+    function renderComments() {
+      commentList.innerHTML = "";
+      let sorted = [...comments];
+      if (sortOrder.value === "newest") sorted.reverse();
+
+      sorted.forEach(c => {
+        const li = document.createElement("li");
+        li.classList.add("comment-item");
+        li.innerHTML = `
+          <div class="comment-header">
+            <div class="avatar">${c.username.charAt(0).toUpperCase()}</div>
+            <div class="meta">
+              <span class="username">${c.username}</span>
+              <span class="timestamp"> · ${formatTimeAgo(c.timestamp)}</span>
+            </div>
+          </div>
+          <div class="comment-text">${c.text}</div>
+        `;
+        commentList.appendChild(li);
+      });
+
+      commentCount.textContent = comments.length;
+    }
+
+    renderComments();
+  </script>
+</body>
+</html>

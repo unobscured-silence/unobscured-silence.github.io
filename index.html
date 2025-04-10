@@ -1,44 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Perpetual Liminality</title>
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/style.css"/>
 </head>
 <body>
 
   <header>
     <div class="header-container">
+
+      <!-- Left side: title and subtitle -->
       <div class="title-group">
-        <h1 class="site-title">Perpetual Liminality</h1>
+        <h1 class="site-title">
+          <a href="/index.html">Perpetual Liminality</a>
+        </h1>
         <h2 class="subtitle">attempts at maintaining my sanity</h2>
       </div>
-      <nav class="top-nav">
-        <a href="/">Home</a>
-        <a href="/pages/mind-maps.html">Minds & Maps</a>
-        <a href="/pages/musings-memoirs.html">Musings & Memoirs</a>
-      </nav>
+
+      <!-- Right side: hamburger and nav -->
+      <div class="nav-wrapper">
+        <button class="hamburger" aria-label="Toggle Menu">&#9776;</button>
+        <nav class="top-nav">
+          <a href="/index.html">Home</a>
+          <a href="/pages/about.html">About</a>
+          <a href="/pages/mind-maps.html">Minds & Maps</a>
+          <a href="/pages/musings-memoirs.html">Musings & Memoirs</a>
+        </nav>
+      </div>
+
     </div>
   </header>
 
-  <main class="content">
-      <div class="blog-grid">
-      <article class="post">
+  <main class="blog-container">
+    <div class="blog-grid homepage-grid">
+      <article class="post minds-maps-home">
         <a href="/pages/mind-maps.html">
-          <h2>🧠 Mind & Maps</h2>
-          <p>GIS, neuroscience, and endeavors to make sense of the world through data.</p>
+          <div class="overlay-text">
+            <h2>🧠 Mind & Maps</h2>
+            <p>GIS, neuroscience, and endeavors to make sense of the world through data.</p>
+          </div>
         </a>
       </article>
 
-      <article class="post">
+      <article class="post musings-memoirs-home">
         <a href="/pages/musings-memoirs.html">
-          <h2>💭 Musings & Memoirs</h2>
-          <p>Reflections, personal stories, and existential wonderings.</p>
+          <div class="overlay-text">
+            <h2>💭 Musings & Memoirs</h2>
+            <p>Reflections, personal stories, and existential wonderings.</p>
+          </div>
         </a>
       </article>
     </div>
   </main>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.top-nav');
+
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
 
 </body>
 </html>

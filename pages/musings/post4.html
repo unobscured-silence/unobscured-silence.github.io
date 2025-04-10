@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Great Untruth of Emotional Reasoning | Perpetual Liminality</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="title-group">
+        <h1 class="site-title">Musings & Memoirs</h1>
+        <h2 class="subtitle">Reflections, ramblings, and existential wanderings.</h2>
+      </div>
+      <nav class="top-nav">
+        <a href="/">Home</a>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/mind-maps.html">Minds & Maps</a>
+        <a href="/pages/musings-memoirs.html">Musings & Memoirs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="blog-post-container">
+    <article class="blog-post-full">
+      <h1 class="post-title">The Great Untruth of Emotional Reasoning & Toxic Self-Affirmation</h1>
+      <p class="post-meta">Published on October 16, 2020</p>
+
+      <div class="post-content">
+        <h2>Preface</h2>
+        <p>In the past, the majority of my written essays were purposefully executed with a certain level of obscurity when the subject related to human tendency... [full preface text here]</p>
+
+        <h2>Inflamed Egos & Instagram Quotes</h2>
+        <p>Why is it that so many of us possess/present an inflamed ego?... [continue post content here]</p>
+
+        <blockquote>
+          “Nothing of me is original. I am the combined effort of everyone I've ever known.” &mdash; Chuck Palahniuk
+        </blockquote>
+
+        <h2>Humility and Honest Self-Reflection</h2>
+        <p>We must always be harsh on our own opinions... [continue content]</p>
+
+        <blockquote>
+          “Wouldn’t our relationships be better if we all did a little less blaming and dichotomous thinking, and recognized that we usually share responsibility for our conflicts?” — Greg Lukianoff & Jonathan Haidt
+        </blockquote>
+      </div>
+
+      <a class="back-link" href="../musings-memoirs.html">&larr; Back to Musings & Memoirs</a>
+    </article>
+
+    <!-- Like & Comment Section -->
+    <section class="interaction-section">
+      <div class="like-section">
+        <button id="like-button">❤</button>
+        <span id="like-text"><span id="like-count">0</span> Likes</span>
+      </div>
+
+      <div class="comments-container">
+        <div class="comments-header">
+          <h3>Comments (<span id="comment-count">0</span>)</h3>
+          <select id="sort-order">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
+
+        <div class="comment-input">
+          <input id="comment-username" type="text" placeholder="Your name..." />
+          <textarea id="comment-text" placeholder="Write a comment..."></textarea>
+          <button id="post-comment">Post Comment</button>
+        </div>
+
+        <ul id="comments-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const postId = window.location.pathname;
+    let likeCount = Number(localStorage.getItem(`${postId}-likes`)) || 0;
+    let liked = localStorage.getItem(`${postId}-liked`) === "true";
+
+    const likeBtn = document.getElementById("like-button");
+    const likeCountSpan = document.getElementById("like-count");
+    likeCountSpan.textContent = likeCount;
+
+    if (liked) {
+      likeBtn.classList.add("liked");
+      likeBtn.disabled = true;
+    }
+
+    likeBtn.addEventListener("click", () => {
+      if (!liked) {
+        likeCount++;
+        localStorage.setItem(`${postId}-likes`, likeCount);
+        localStorage.setItem(`${postId}-liked`, "true");
+        likeCountSpan.textContent = likeCount;
+        likeBtn.disabled = true;
+        likeBtn.style.opacity = 0.6;
+      }
+    });
+
+    let comments = JSON.parse(localStorage.getItem(`${postId}-comments`)) || [];
+
+    const usernameInput = document.getElementById("comment-username");
+    const commentInput = document.getElementById("comment-text");
+    const commentList = document.getElementById("comments-list");
+    const commentCount = document.getElementById("comment-count");
+    const sortOrder = document.getElementById("sort-order");
+
+    document.getElementById("post-comment").addEventListener("click", () => {
+      const username = usernameInput.value.trim();
+      const text = commentInput.value.trim();
+      if (username && text) {
+        const newComment = {
+          username,
+          text,
+          timestamp: new Date().toISOString()
+        };
+        comments.push(newComment);
+        localStorage.setItem(`${postId}-comments`, JSON.stringify(comments));
+        usernameInput.value = "";
+        commentInput.value = "";
+        renderComments();
+      } else {
+        alert("Please enter both a name and a comment.");
+      }
+    });
+
+    sortOrder.addEventListener("change", renderComments);
+
+    function formatTimeAgo(dateStr) {
+      const now = new Date();
+      const date = new Date(dateStr);
+      const seconds = Math.floor((now - date) / 1000);
+      if (seconds < 60) return `just now`;
+      const minutes = Math.floor(seconds / 60);
+      if (minutes < 60) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+      const days = Math.floor(hours / 24);
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    }
+
+    function renderComments() {
+      commentList.innerHTML = "";
+      let sorted = [...comments];
+      if (sortOrder.value === "newest") sorted.reverse();
+
+      sorted.forEach(c => {
+        const initial = c.username.charAt(0).toUpperCase();
+        const timeAgo = formatTimeAgo(c.timestamp);
+
+        const li = document.createElement("li");
+        li.classList.add("comment-item");
+        li.innerHTML = `
+          <div class="comment-header">
+            <div class="avatar">${initial}</div>
+            <div class="meta">
+              <span class="username">${c.username}</span>
+              <span class="timestamp"> · ${timeAgo}</span>
+            </div>
+          </div>
+          <div class="comment-text">${c.text}</div>
+        `;
+        commentList.appendChild(li);
+      });
+
+      commentCount.textContent = comments.length;
+    }
+
+    renderComments();
+  </script>
+</body>
+</html>

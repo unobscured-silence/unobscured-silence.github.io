@@ -1,48 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Musings & Memoirs | Perpetual Liminality</title>
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/style.css"/>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="header-container">
-      <div class="title-group">
-        <h1 class="site-title">Musings & Memoirs</h1>
-        <h2 class="subtitle">memory, meaning, and quiet unraveling</h2>
+  <div class="site-wrapper">
+    <div class="blog-grid homepage-grid"></div>
+    <!-- Global Site Header -->
+    <header>
+      <div class="header-container">
+        <div class="title-group">
+          <h1 class="site-title">
+            <a href="/index.html">Perpetual Liminality</a>
+          </h1>
+          <h2 class="subtitle">attempts at maintaining my sanity</h2>
+        </div>
+        <nav class="top-nav">
+          <a href="/index.html">Home</a>
+          <a href="/pages/about.html">About</a>
+          <a href="/pages/mind-maps.html">Minds & Maps</a>
+          <a href="/pages/musings-memoirs.html">Musings & Memoirs</a>
+        </nav>
       </div>
-      <nav class="top-nav">
-        <a href="/">Home</a>
-        <a href="/pages/mind-maps.html">Minds & Maps</a>
-        <a href="/pages/musings-memoirs.html">Musings & Memoirs</a>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="blog-container">
-    
-    <article class="blog-post">
-      <a href="/pages/musings/post2.html">
-        <h2>Jealousy as the Ultimate Existential/Social CockBlock</h2>
-        <p>(And not the romantic kind of jealousy)</p>
-      </a>
-      <p class="post-preview-meta">March 31, 2025 | Musings & Memoirs</p>
-    </article>
-    
-    <article class="blog-post">
-      <a href="/pages/musings/post1.html">
-        <h2>Graduate School Stole Something From Me</h2>
-        <p>Reflections on the erosion of idealism, deceptive comforts of people-pleasing, and the cost of suppressed truths.</p>
-      </a>
-      <p class="post-preview-meta">March 20, 2025 | Musings & Memoirs</p>
-    </article>
+    <main class="blog-container">
 
-  </main>
+      <!-- Hero Banner -->
+      <section class="page-hero">
+        <div class="hero-image musings-memoirs-hero">
+          <div class="hero-text">
+            <h1>Musings & Memoirs</h1>
+            <p>memory, meaning, and quiet unraveling</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- Blog Post Grid -->
+      <div class="blog-grid">
+
+        <article class="blog-tile">
+          <a href="/pages/musings/post3.html">
+            <img src="/assets/images/empty-bench.jpg" alt="Jealousy Post Visual" class="tile-image" />
+          </a>
+          <h3 class="tile-title">I'm Still Not Sure Where to Go from Here</h3>
+          <a href="/pages/musings/post3.html" class="read-more">Read More →</a>
+          <p class="tile-date">April 9, 2025</p>
+        </article>
+        
+        <article class="blog-tile">
+          <a href="/pages/musings/post2.html">
+            <img src="/assets/images/jealousy.jpg" alt="Jealousy Post Visual" class="tile-image" />
+          </a>
+          <h3 class="tile-title">Jealousy as the Ultimate Existential/Social CockBlock</h3>
+          <a href="/pages/musings/post2.html" class="read-more">Read More →</a>
+          <p class="tile-date">March 31, 2025</p>
+        </article>
+        
+        <article class="blog-tile">
+          <a href="/pages/musings/post1.html">
+            <img src="/assets/images/grad-school-stole.jpg" alt="Graduate School Post Visual" class="tile-image" />
+          </a>
+          <h3 class="tile-title">Graduate School Stole Something From Me</h3>
+          <a href="/pages/musings/post1.html" class="read-more">Read More →</a>
+          <p class="tile-date">March 20, 2025</p>
+        </article>
+        
+
+      </div>
+
+    </main>
+
+  </div>
 
 </body>
 </html>
-
