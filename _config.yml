@@ -1,0 +1,41 @@
+# --- Site Identity ---
+title: Perpetual Liminality
+description: thoughts trapped in amber
+author: Emma Cheriegate
+
+# --- Contact Info (optional) ---
+email: unobscuredsilence@gmail.com
+
+# --- Blog URL Settings ---
+baseurl: "" # leave blank if using username.github.io, otherwise use "/repo-name"
+url: "https://unobscured-silence.github.io" # ← replace with your actual GitHub Pages URL
+
+# --- Build Settings ---
+markdown: kramdown
+highlighter: rouge
+permalink: /:title
+
+# --- Plugins ---
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# --- Pagination (basic) ---
+paginate: 5
+
+# --- Feed Customization ---
+# Optional RSS support (use if you want a different feed format)
+# feed:
+#   path: rss-feed.xml
+
+# --- Excludes ---
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# --- Theme setting ---
+theme: null
