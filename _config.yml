@@ -8,7 +8,7 @@ email: unobscuredsilence@gmail.com
 
 # --- Blog URL Settings ---
 baseurl: "" 
-url: "https://www.perpetualliminality.com"
+url: "https://perpetualliminality.com"
 
 # --- Build Settings ---
 markdown: kramdown
