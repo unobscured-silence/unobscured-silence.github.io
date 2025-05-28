@@ -1,0 +1,28 @@
+title: Perpetual Liminality
+description: thoughts trapped in amber
+author: Emma Cheriegate
+
+email: unobscuredsilence@gmail.com
+
+baseurl: "" 
+url: "https://www.perpetualliminality.com"
+
+markdown: kramdown
+highlighter: rouge
+permalink: /:title
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+paginate: 5
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+theme: null

@@ -1,0 +1,41 @@
+/*
+  Post
+*/
+
+.post-date {
+  display: block;
+  margin-top:3px;
+  margin-bottom: 1rem;
+  color: $light-gray-color;
+  font-family: $sans-serif-font-family;
+  font-size:0.8rem;
+}
+
+.post-image {
+  width: 50%;
+  max-width: 700px;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 6px; /* optional for rounded corners */
+}
+
+
+@media (max-width: $elements-responsive-width) {
+  .posts h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.related {
+  padding-bottom: 2rem;
+}
+
+.related-posts {
+  padding-left: 0px;
+  list-style: none;
+}
+
+.related-posts a {
+  text-decoration: none;
+}
