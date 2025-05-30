@@ -2,6 +2,7 @@
 layout: post
 title: "Frustration of Privileged Circumstance"
 categories: journal
+tags: [documentation,sample]
 image: docked-boat.jpg
 ---
 

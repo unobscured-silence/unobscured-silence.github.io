@@ -2,6 +2,7 @@
 layout: post
 title: "Rant.Rant.Rant."
 categories: journal
+tags: [documentation,sample]
 image: rant-rant-rant.jpg
 ---
 

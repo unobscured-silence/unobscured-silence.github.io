@@ -2,6 +2,7 @@
 layout: post
 title: "An Allowance of Humanity"
 categories: journal
+tags: [documentation,sample]
 image: allowance-humanity.jpg
 ---
 
