@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Graduate School Stole Something From Me"
+slug: grad-school-stole
 categories: journal
 tags: [documentation,sample]
 image: grad-school-stole.jpg

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Frustration of Privileged Circumstance"
+slug: frustration-circumstance
 categories: journal
 tags: [documentation,sample]
 image: docked-boat.jpg
