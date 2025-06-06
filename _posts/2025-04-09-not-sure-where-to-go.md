@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "I'm Still Not Sure Where to Go from Here"
-slug: still-not-sure-where
 categories: journal
 tags: [documentation,sample]
 image: empty-bench.jpg

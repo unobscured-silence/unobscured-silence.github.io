@@ -2,7 +2,6 @@
 layout: post
 title: "Jealousy as the Ultimate Existential/Social CockBlock"
 subtitle: "(And not the Romantic Kind of Jealousy)"
-slug: jealousy-cockblock
 tags: [documentation,sample]
 categories: journal
 image: jealousy.jpg

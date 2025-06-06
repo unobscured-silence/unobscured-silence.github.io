@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Rant.Rant.Rant."
-slug: rant-rant-rant
 categories: journal
 tags: [documentation,sample]
 image: rant-rant-rant.jpg
