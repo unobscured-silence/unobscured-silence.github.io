@@ -75,7 +75,7 @@ I want to volunteer at the hospice center, but my schedule won’t allow it.
 
 I want to have intellectual discussions. And I try. But I can’t find anyone near me whose curiosity matches mine.
 
-The only one I knew doesn’t live here anymore. A person whose capacity of conversation, curiosity, warmth, fervor, and unending ability to seek people out. Life felt more alive in her presence. She breathes excitement and inspiration into the air, her sentences bringing light to even the dimmest of eyes. She is an oasis. But now, she’s married, busy, far away. Living a life that doesn’t include me.
+The only one I knew doesn’t live here anymore. A person whose capacity of conversation, curiosity, warmth, fervor, and ability to seek people out is unending. Life felt more alive in her presence. She breathes excitement and inspiration into the air, her sentences bringing light to even the dimmest of eyes. She is an oasis. But now, she’s married, busy, far away. Living a life that doesn’t include me.
 
 So here I am.
 Still with so much space. So much capacity. So much willingness to prioritize others.
@@ -101,4 +101,4 @@ And I don’t know what to do about it.
 
 I have amazing friends. Supportive, lovely friends. But this part of me, the one that’s grown into the largest, most important aspect of who I am, I don’t get to engage.
 
-And so, I anesthetize myself. I don’t know if I can live forever like this.
+And so, I anesthetize myself. I don’t know if I can live like this forever.
